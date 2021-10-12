@@ -1,4 +1,4 @@
-name                   = "terraform-ansible-test"
+name                   = "terraform-cloud-test"
 ami                    = "ami-087c17d1fe0178315"
 instance_type          = "t2.micro"
 key_name               = "Test"
