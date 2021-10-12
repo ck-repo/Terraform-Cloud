@@ -30,3 +30,10 @@ module "ec2_instance" {
     Environment = "dev"
   }
 }    
+
+resource "aws_s3_bucket_object" "file_upload" {
+  bucket = "kilp-ansible"
+  key    = "httpd.yaml"
+  source = "${path.module}/Ansible/httpd.yaml"
+  etag   = "${filemd5("${path.module}/Ansible/httpd.yaml")}"
+}
