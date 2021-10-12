@@ -1,0 +1,52 @@
+name: Terraform-Cloud-Pipeline
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on pull request events but only for the Master branch and push request events only for the Dev branch.
+
+  pull_request:
+    branches:
+      - master
+
+  push:
+    branches:
+      - master
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  validate-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code  
+      uses: actions/checkout@v2
+
+    - name: Run a Terraform init  
+      run: terraform init
+
+    - name: Run a Terraform validate  
+      run: terraform validate
+      if: ${{ github.event_name == 'pull_request' }}
+
+    - name: Run a tfsec scan
+      uses: tfsec/tfsec-pr-commenter-action@main
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+      if: ${{ github.event_name == 'pull_request' }}
+
+    - name: Lint Ansible Playbook
+      uses: ansible/ansible-lint-action@master
+      with:
+        targets: "Ansible/httpd.yaml"
+      if: ${{ github.event_name == 'pull_request' }}
+
+    - name: Upload Playbook to S3
+      uses: jakejarvis/s3-sync-action@master
+      env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        SOURCE_DIR: 'Ansible'
+      if: ${{ github.event_name == 'push' }}
+
