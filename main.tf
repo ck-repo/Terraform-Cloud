@@ -27,6 +27,7 @@ module "ec2_instance" {
 
   tags = {
     Terraform   = "true"
+    DeployedBy  = "Terraform Cloud"
     Environment = "dev"
   }
 }    
