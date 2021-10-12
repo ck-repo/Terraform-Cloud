@@ -20,21 +20,17 @@ jobs:
 
     - name: Run a Terraform init  
       run: terraform init
-      if: ${{ github.event_name == 'pull_request' }}
 
     - name: Run a Terraform validate  
       run: terraform validate
-      if: ${{ github.event_name == 'pull_request' }}
 
     - name: Run a tfsec scan
       uses: tfsec/tfsec-pr-commenter-action@main
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-      if: ${{ github.event_name == 'pull_request' }}
 
     - name: Lint Ansible Playbook
       uses: ansible/ansible-lint-action@master
       with:
         targets: "Ansible/httpd.yaml"
-      if: ${{ github.event_name == 'pull_request' }}
 
