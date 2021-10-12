@@ -26,7 +26,6 @@ module "ec2_instance" {
   iam_instance_profile   = var.iam_instance_profile
 
   tags = {
-    Terraform   = "true"
     DeployedBy  = "Terraform Cloud"
     Environment = "dev"
   }
