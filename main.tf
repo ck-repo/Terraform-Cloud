@@ -29,7 +29,7 @@ resource "aws_launch_configuration" "Terraform-Demo-AWS-Auto-Scaling-Launch-Conf
   user_data              = var.user_data
   
   root_block_device {
-  encrypted              = false
+  encrypted              = true
   }
 }  
 
