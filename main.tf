@@ -121,15 +121,16 @@ resource "azurerm_subnet_network_security_group_association" "Terraform-Demo-Azu
 #Azure Virtual Machine Scale Set Config
 
 resource "azurerm_linux_virtual_machine_scale_set" "Terraform-Demo-Azure-VMSS" {
-  name                = "Terraform-Demo-VMSS"
-  resource_group_name = azurerm_resource_group.Terraform-Demo-Azure-RG.name
-  location            = azurerm_resource_group.Terraform-Demo-Azure-RG.location
-  sku                 = "Standard_F2"
-  instances           = 2
-  admin_username      = "adminuser"
-  zone_balance        = true
-  zones               = [1, 2, 3] 
-  custom_data         = base64encode(file("azure.sh"))
+  name                             = "Terraform-Demo-VMSS"
+  resource_group_name              = azurerm_resource_group.Terraform-Demo-Azure-RG.name
+  location                         = azurerm_resource_group.Terraform-Demo-Azure-RG.location
+  sku                              = "Standard_F2"
+  instances                        = 2
+  admin_username                   = "adminuser"
+  disable_password_authentication  = false
+  zone_balance                     = true
+  zones                            = [1, 2, 3] 
+  custom_data                      = base64encode(file("azure.sh"))
 
   source_image_reference {
     publisher = "Canonical"
