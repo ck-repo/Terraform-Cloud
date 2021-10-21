@@ -24,7 +24,7 @@ jobs:
     - name: Run a Terraform validate  
       run: terraform validate
 
-    - name: Run a tfsec scan
+    - name: Run a TFSec Scan
       uses: tfsec/tfsec-pr-commenter-action@main
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
