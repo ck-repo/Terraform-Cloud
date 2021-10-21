@@ -1,7 +1,23 @@
-name                   = "terraform-cloud-test"
-ami                    = "ami-087c17d1fe0178315"
-instance_type          = "t2.micro"
-key_name               = "Test"
-vpc_security_group_ids = ["sg-0a1a3a4a"]
-subnet_id              = "subnet-1138155b"
-iam_instance_profile   = "ansible_s3"
+#AWS Variables
+
+lc_name       = "terraform-demo-lc"
+image_id      = "ami-087c17d1fe0178315"
+instance_type = "t2.micro"
+key_name      = "Test"
+asg_name      = "terraform-demo-asg"
+user_data     = <<EOF
+
+  #!/bin/bash
+
+  sudo amazon-linux-extras install ansible2 -y
+
+  wget http://kilp-ansible.s3.amazonaws.com/httpd-aws.yaml httpd-aws.yaml
+
+  sudo ansible-playbook httpd-aws.yaml
+
+EOF
+
+#Azure Variables
+
+location = "West Europe"
+
