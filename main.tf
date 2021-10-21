@@ -131,11 +131,6 @@ resource "azurerm_linux_virtual_machine_scale_set" "Terraform-Demo-Azure-VMSS" {
   zones               = [1, 2, 3] 
   custom_data         = base64encode(file("azure.sh"))
 
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
-
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
