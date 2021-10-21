@@ -20,4 +20,4 @@ EOF
 #Azure Variables
 
 location = "West Europe"
-
+vmss_password = "${env.VMSS_PASS}"

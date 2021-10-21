@@ -36,3 +36,8 @@ variable "location" {
   description = "Location to deploy Azure resources."
   type        = string
 }
+
+variable "vmss_password" {
+  description = "Admin password for VMSS instances."
+  type        = string
+}
