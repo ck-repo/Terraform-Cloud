@@ -27,6 +27,10 @@ resource "aws_launch_configuration" "Terraform-Demo-AWS-Auto-Scaling-Launch-Conf
   instance_type          = var.instance_type
   key_name               = var.key_name
   user_data              = var.user_data
+  
+  root_block_device {
+  encrypted              = true
+  }
 }  
 
 #AWS ASG Config
