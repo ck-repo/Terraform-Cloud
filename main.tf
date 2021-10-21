@@ -127,6 +127,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "Terraform-Demo-Azure-VMSS" {
   sku                              = "Standard_F2"
   instances                        = 2
   admin_username                   = "adminuser"
+  admin_password                   = var.VMSS_PASS
   disable_password_authentication  = false
   zone_balance                     = true
   zones                            = [1, 2, 3] 

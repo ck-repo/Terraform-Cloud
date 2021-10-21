@@ -20,4 +20,3 @@ EOF
 #Azure Variables
 
 location = "West Europe"
-
