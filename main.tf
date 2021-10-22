@@ -38,7 +38,7 @@ resource "aws_launch_configuration" "Terraform-Demo-AWS-Auto-Scaling-Launch-Conf
 resource "aws_autoscaling_group" "Terraform-Demo-AWS-Auto-Scaling-Group" {
   name                      = var.asg_name
   max_size                  = 5
-  min_size                  = 2
+  min_size                  = 3
   health_check_grace_period = 300
   health_check_type         = "ELB"
   desired_capacity          = 2
