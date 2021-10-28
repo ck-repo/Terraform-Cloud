@@ -112,7 +112,7 @@ resource "azurerm_network_security_group" "Terraform-Demo-Azure-NSG" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*"
+    source_address_prefix      = "185.192.70.53/32"
     destination_address_prefix = "*"
   }
 }
@@ -204,7 +204,7 @@ resource "azurerm_lb_rule" "Terraform-Demo-Azure-LBNATRule" {
    protocol                       = "Tcp"
    frontend_port                  = "80"
    backend_port                   = "80"
-   backend_address_pool_id        = azurerm_lb_backend_address_pool.Terraform-Demo-Azure-LB-Backend-Pool.id
+   backend_address_pool_ids       = [azurerm_lb_backend_address_pool.Terraform-Demo-Azure-LB-Backend-Pool.id]
    frontend_ip_configuration_name = "PublicIPAddress"
    probe_id                       = azurerm_lb_probe.Terraform-Demo-Azure-LB-Probe.id
 }
