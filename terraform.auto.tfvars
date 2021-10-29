@@ -2,7 +2,7 @@
 
 lc_name       = "terraform-demo-lc"
 image_id      = "ami-087c17d1fe0178315"
-instance_type = "t2.micro"
+instance_type = "t2.2xlarge"
 key_name      = "Test"
 asg_name      = "terraform-demo-asg"
 user_data     = <<EOF
