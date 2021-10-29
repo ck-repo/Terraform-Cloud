@@ -41,7 +41,7 @@ resource "aws_autoscaling_group" "Terraform-Demo-AWS-Auto-Scaling-Group" {
   min_size                  = 2
   health_check_grace_period = 300
   health_check_type         = "ELB"
-  desired_capacity          = 2
+  desired_capacity          = 5
   force_delete              = true
   launch_configuration      = aws_launch_configuration.Terraform-Demo-AWS-Auto-Scaling-Launch-Config.name
   vpc_zone_identifier       = ["subnet-1138155b", "subnet-24e97443"]
@@ -112,7 +112,7 @@ resource "azurerm_network_security_group" "Terraform-Demo-Azure-NSG" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "185.192.70.53/32"
+    source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
 }
